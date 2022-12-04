@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT =process.env.PORT||7070;
+const port = 8080;
 
 const { initializeApp, cert } = require("firebase-admin/app");
 const { getFirestore } = require("firebase-admin/firestore");
@@ -15,26 +15,23 @@ const db = getFirestore();
 
 app.set("view engine", "ejs");
 
-
 app.get("/signin", (req, res) => {
   res.render("signin");
 });
 
- app.use(express.static(__dirname + "/img"));
-
+app.use(express.static(__dirname + "/public"));
 
 app.get("/signinsubmit", (req, res) => {
   const email = req.query.email;
-  const password = req.query.password;  
-  db.collection('users')
+  const password = req.query.password;
+  db.collection("users")
     .where("email", "==", email)
     .where("password", "==", password)
     .get()
     .then((docs) => {
       if (docs.size > 0) {
         res.render("web");
-      }
-      else {
+      } else {
         res.send("<h1>Login failed ,incorrect login credentials</h1>");
       }
     });
@@ -45,7 +42,7 @@ app.get("/signupsubmit", (req, res) => {
   const lastname = req.query.lastname;
   const email = req.query.email;
   const password = req.query.password;
-  db.collection('users')
+  db.collection("users")
     .add({
       name: firstname + lastname,
       email: email,
@@ -56,9 +53,12 @@ app.get("/signupsubmit", (req, res) => {
     });
 });
 
+app.get("/navsubmit", (req, res) => {
+  res.render("signin");
+});
 
 app.get("/navsubmit", (req, res) => {
-    res.render("signin")
+  res.render("signup");
 });
 
 app.get("/", (req, res) => {
@@ -69,10 +69,10 @@ app.get("/web", (req, res) => {
   res.render("web");
 });
 
-
-
 app.get("/", (req, res) => {
- res.sendFile(path.join(__dirname, "views/index.ejs"));
+  res.sendFile(path.join(__dirname, "views/index.ejs"));
 });
 
-app.listen(PORT,()=>{ console.log(`Server is running on http://localhost:${PORT}`)});
+app.listen(port, () => {
+  console.log(`Server is running on Port Number: http://localhost:${port}`);
+});
