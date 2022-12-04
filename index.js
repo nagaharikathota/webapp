@@ -72,7 +72,7 @@ app.get("/web", (req, res) => {
 
 
 app.get("/", (req, res) => {
- res.sendFile(path.join(__dirname, "views/index.ejs"))
+ res.sendFile(path.join(__dirname, "views/index.ejs"));
 });
 
 app.listen(PORT,()=>{ console.log(`Server is running on http://localhost:${PORT}`)});
