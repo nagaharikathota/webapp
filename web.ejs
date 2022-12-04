@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>kalyani's Jewellery products</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;900&display=swap" rel="stylesheet">
+ <!-- <link rel="stylesheet" href="css/main.css" /> -->
+ </head>
+<style>
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+section {
+  padding: 7em 0;
+}
+
+.container {
+  width: 85%;
+  max-width: 65em;
+  margin: 0 auto;
+}
+
+.split {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1em;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.split > * {
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+  min-width: 15em;
+}
+
+.spacing > * + * {
+  margin-top: var(--spacer, 2rem);
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--clr-text, #fff);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 1.125rem;
+  padding: .5em 1.25em;
+  background: var(--clr-accent, blue);
+  border-radius: .25em;
+  -webkit-transition: opacity 250ms linear,
+ -webkit-transform 250ms ease-in-out;
+  transition: opacity 250ms linear,
+ -webkit-transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out,
+ opacity 250ms linear;
+  transition: transform 250ms ease-in-out,
+ opacity 250ms linear,
+ -webkit-transform 250ms ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  opacity: .9;
+}
+
+.primary-title {
+  font-size: 4rem;
+  font-size: clamp(3rem, calc(5vw + 1rem), 4.5rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(2.5rem, calc(5vw + 1rem), 4rem);
+  line-height: 1;
+  color: #17353d;
+  margin-bottom: 5rem;
+}
+
+.hero {
+  color: white;
+  text-align: center;
+  padding: 15em 0;
+  background: #222;
+}
+
+@supports (background-blend-mode: multiply) {
+  .hero {
+    background: url("https://i.ibb.co/vjc66X0/pic9.jpg"), radial-gradient(#777, #222);
+    background-blend-mode: multiply;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.featured {
+  background: #fff;
+}
+
+.featured__item {
+  display: block;
+  position: relative;
+  -webkit-transform: scale(0.85);
+          transform: scale(0.85);
+  -webkit-transition: -webkit-transform 250ms ease-in-out;
+  transition: -webkit-transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out;
+  transition: transform 250ms ease-in-out, -webkit-transform 250ms ease-in-out;
+  text-decoration: none;
+  color: #333;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.featured__item:hover, .featured__item:focus {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.featured__item:hover .featured__details, .featured__item:focus .featured__details {
+  opacity: 1;
+  text-shadow: 0 0 2em white;
+}
+
+.featured__item::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  padding: 75% 75% 0 0;
+  border-radius: 50%;
+  background: hsl(0, 0%, 90%);
+  z-index: -1;
+}
+
+.featured__details {
+  opacity: 0;
+  -webkit-transition: opacity 250ms linear;
+  transition: opacity 250ms linear;
+}
+
+.featured__details span {
+  display: block;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.product {
+  background: radial-gradient(var(--clr-inner, limegreen), var(--clr-outer, magenta));
+  padding: 3em;
+  border-radius: 1em;
+  margin-bottom: 5em;
+  text-align: center;
+}
+
+
+.product__title {
+  font-size: clamp(3rem, calc(5vw + 1rem), 5.5rem);
+  text-transform: uppercase;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 0.2em rgba(0, 0, 0, 0.2);
+}
+
+
+.product__image {
+  margin: -5em 0 0 0;
+}
+
+@media (min-width: 45em) {
+  .product {
+    text-align: left;
+    margin-bottom: 9em;
+  }
+  .product__title {
+    margin: 0;
+  }
+  .product__image {
+    float: right;
+    width: 65%;
+    shape-outside: url(../img/pic1.png);
+    shape-margin: 1em;
+    margin: 0 -5em 0 0;
+  }
+
+  .product.item-left .product__image {
+    float: left;
+    shape-outside: url(../img/pic2.png);
+    margin: 0 0 0 -5em;
+    shape-margin: 2em;
+  }
+}
+
+
+
+
+.hero {
+  --clr-accent: #6dd9e1;
+
+}
+.color-red {
+  --clr-inner: #fee290;
+  --clr-outer: #e48d00;
+  --clr-accent: #de913c;
+}
+
+.color-white {
+  --clr-inner: #fce290;
+  --clr-outer: #fce4b3 ;
+  --clr-accent: #efce58;
+}
+
+.color-blue {
+  --clr-inner: #6dd5ed;
+  --clr-outer: #2193b0;
+  --clr-accent: #6dd9e1;
+}
+
+</style>
+
+<body>
+
+  <header class="hero">
+    <div class="container spacing">
+      <h1 class="primary-title">Amazing Jewellery at an amazing price</h1>
+      <p style="color:white"> Amazing jewellery at Amazon with amazing Price  available now</p>
+      <a href="#" class="btn">See my products</a>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="featured">
+      <div class="container">
+        <h2 class="section-title">Featured jewellery items</h2>
+        <div class="split">
+          <a href="#" class="featured__item">
+            <img src="https://i.ibb.co/vjc66X0/pic9.jpg">
+            <p class="featured__details"><span class="price">$299</span>shoe name</p>
+          </a>
+          <a href="#" class="featured__item">
+            <img src="https://i.ibb.co/bPTybJs/pic2.jpg">
+            <p class="featured__details"><span class="price">$199</span>shoe name</p>
+          </a>
+          <a href="#" class="featured__item">
+            <img src="https://i.ibb.co/cyr4BHC/pic3.jpg">
+            <p class="featured__details"><span class="price">$199</span>shoe name</p>
+          </a>
+          <a href="#" class="featured__item">
+                 <img src="https://i.ibb.co/bJbySTt/pic8.jpg">
+            <p class="featured__details"><span class="price">$299</span>shoe name</p>
+          </a>
+          <a href="#" class="featured__item">
+        <img src="https://i.ibb.co/DzBjmKS/pic5.jpg">
+            <p class="featured__details"><span class="price">$299</span>shoe name</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="our-products">
+      <div class="container">
+        <h2 class="section-title">Amazing Jewellery</h2>
+
+        <article class="product color-red spacing">
+            <img src="https://i.ibb.co/JKfDwRk/pic11.jpg">
+          <h3 class="product__title">A really nice ring</h3>
+          <p class="product__description">14k Yellow Gold Oval Orange Spessartite Garnet Gemstone and Diamond Three Stone Ring!</p>
+            <a href="" class="btn">Buy now</a>
+        </article>
+
+        <article class="product color-white shoe-left spacing">
+            <img src="https://i.ibb.co/pWL9wjM/j1.jpg">
+          <h3 class="product__title">A bangle boost </h3>
+          <p class="product__description">Shining Diva Fashion 15 Latest Designs Crystal Multilayer Stylish 3-5 pcs Set Charm Bracelets for Women and Girls!</p>
+            <a href="" class="btn">Buy now</a>
+        
+        </article>
+
+        <article class="product color-blue spacing">
+            <img src="https://i.ibb.co/30DhCWm/pic10.jpg">
+          <h3 class="product__title">A Women Nice ear Rings</h3>
+          <p class="product__description">YouBella Jewellery Bohemian Multi-Color Earrings for Girls and Women!</p>
+          <a href="" class="btn">Buy now</a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
